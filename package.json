@@ -1,6 +1,6 @@
 {
   "name": "vue-pawel-ui",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "description": "A Personal Learning UI library For Vue",
   "main": "lib/index.js",
   "scripts": {

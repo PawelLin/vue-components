@@ -1,29 +1,44 @@
 # vue-components
 
-## Project setup
+### Install
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm i vue-pawel-ui -S
 ```
 
-### Compiles and minifies for production
+### Import all components
 ```
-npm run build
+import Vue from 'vue'
+import pawelUI from 'vue-pawel-ui'
+import 'vue-pawel-ui/lib/themes/index.css'
+
+Vue.use(pawelUI)
 ```
 
-### Run your tests
+### Manually import
 ```
-npm run test
-```
+// Install plugin
+npm i babel-plugin-import -D
 
-### Lints and fixes files
-```
-npm run lint
-```
+// For users who use babel7, that can be configured in babel.config.js
+module.exports = {
+    plugins: [
+        [
+            'component',
+        {
+            libraryName: 'vue-pawel-ui',
+            styleLibrary: {
+            name: 'themes'
+            }
+        },
+            'vue-pawel-ui'
+        ]
+    ]
+}
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+// Then you can import components from vue-pawel-ui
+import Vue from 'vue'
+import { Button, ImagePreview } from 'vue-pawel-ui'
+
+Vue.use(Button)
+Vue.use(ImagePreview)
+```

@@ -5,6 +5,9 @@ module.exports = {
         },
         {
             name: 'input'
+        },
+        {
+            name: 'image-preview'
         }
     ]
 }
