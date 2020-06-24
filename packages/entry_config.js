@@ -8,6 +8,12 @@ module.exports = {
         },
         {
             name: 'image-preview'
+        },
+        {
+            name: 'pie-chart'
+        },
+        {
+            name: 'clock'
         }
     ]
 }

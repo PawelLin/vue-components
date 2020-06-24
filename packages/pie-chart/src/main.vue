@@ -1,11 +1,13 @@
 <template>
     <div ref="canvasDiv">
-        <canvas ref="canvas" @click="showActive" :style="{ backgroundColor: this.backgroundColor }"></canvas>
+        <canvas ref="canvas" @click="showActive"></canvas>
         <button @click="reDraw">重画</button>
     </div>
 </template>
 
 <script>
+import '../../themes/pieChart.scss'
+
 export default {
     name: 'PwPieChart',
     props: {
@@ -43,10 +45,15 @@ export default {
             type: Number,
             default: 1.1
         },
-        // 背景颜色
-        backgroundColor: {
+        // 空白块颜色
+        spaceColor: {
             type: String,
             default: 'white'
+        },
+        // 阴影模糊面积
+        shadowBlur: {
+            type: Number,
+            default: 16
         }
     },
     data () {
@@ -74,7 +81,7 @@ export default {
             this.ctx.webkitBackingStorePixelRatio ||
             this.ctx.mozBackingStorePixelRatio ||
             this.ctx.msBackingStorePixelRatio ||
-            this.ctx.oBackingStorePixelRatio || 1) + 2
+            this.ctx.oBackingStorePixelRatio || 1)
         const width = this.$refs.canvasDiv.offsetWidth || document.body.offsetWidth
         canvas.style.width = width + 'px'
         canvas.style.height = width + 'px'
@@ -111,8 +118,8 @@ export default {
                 ctx.moveTo(centerX, centerY)
                 ctx.fillStyle = this.colors[index]
                 this.drawArc(centerX, centerY, radius, start, end)
-                ctx.fill()
                 ctx.closePath()
+                ctx.fill()
                 if (point && ctx.isPointInPath(point.x, point.y) && !isSpace) {
                     this.active = index
                 }
@@ -131,8 +138,8 @@ export default {
             ctx.moveTo(centerX, centerY)
             ctx.fillStyle = this.colors[this.active]
             this.drawArc(centerX, centerY, radius * this.activeScale, start, end)
-            ctx.fill()
             ctx.closePath()
+            ctx.fill()
         },
         // 绘制动画圆环
         drawPie () {
@@ -146,8 +153,8 @@ export default {
             ctx.moveTo(centerX, centerY)
             ctx.fillStyle = this.colors[this.getPieColor(this.animateSize / 360)]
             this.drawArc(centerX, centerY, radius, this.start, this.end)
-            ctx.fill()
             ctx.closePath()
+            ctx.fill()
             this.drawSpacePie()
             if (this.animateSize < 360) {
                 this.start = this.end - 0.002
@@ -167,10 +174,10 @@ export default {
             const radius = this.height / 2
             ctx.beginPath()
             ctx.moveTo(centerX, centerY)
-            ctx.fillStyle = this.backgroundColor
+            ctx.fillStyle = this.spaceColor
             this.drawArc(centerX, centerY, radius * (1 - this.land), 0, 2 * Math.PI)
-            ctx.fill()
             ctx.closePath()
+            ctx.fill()
             return ctx
         },
         // 绘制阴影
@@ -180,14 +187,15 @@ export default {
             const centerY = this.centerY
             const radius = this.height / 2
             ctx.beginPath()
-            ctx.shadowBlur = 16 * this.size
+            ctx.shadowBlur = this.shadowBlur * this.size
             ctx.shadowColor = '#999999'
-            ctx.fillStyle = this.backgroundColor
+            ctx.fillStyle = this.spaceColor
             ctx.arc(centerX, centerY, radius, Math.PI / 4, Math.PI - Math.PI / 4)
-            ctx.fill()
             ctx.closePath()
+            ctx.fill()
             ctx.shadowBlur = 0
         },
+        // 重绘
         reDraw () {
             if (this.animateSize === 360) {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)

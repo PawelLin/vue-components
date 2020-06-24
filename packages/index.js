@@ -1,13 +1,15 @@
 import Button from './button'
 import Input from './input'
 import ImagePreview from './image-preview'
-import pieChart from './pie-chart'
+import PieChart from './pie-chart'
+import Clock from './clock'
 
 const components = [
     Button,
     Input,
     ImagePreview,
-    pieChart
+    PieChart,
+    Clock
 ]
 
 const install = function (Vue) {
@@ -24,5 +26,6 @@ export default {
     Button,
     Input,
     ImagePreview,
-    pieChart
+    PieChart,
+    Clock
 }
