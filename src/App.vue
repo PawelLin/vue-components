@@ -8,7 +8,7 @@
         <div class="contain">
             <pw-input />
         </div>
-        <!-- <p class="title">image-preview</p>
+        <p class="title">image-preview</p>
         <div class="contain">
             <div>
                 <img @click="showPreview(index)" v-for="(item, index) in images" :src="item" :alt="item" :key="item + index" width="80">
@@ -20,9 +20,9 @@
             <div>
                 <pw-pie-chart background-color="#f9c" />
             </div>
-        </div> -->
+        </div>
         <p class="title">clock</p>
-        <div class="contain">
+        <div class="contain clock">
             <pw-clock />
         </div>
     </div>
@@ -79,6 +79,12 @@ body {
     > div {
         margin: auto;
         width: 50%;
+    }
+}
+.clock {
+    > div {
+        margin: auto;
+        width: 70%;
     }
 }
 </style>

@@ -151,7 +151,7 @@ export default {
             const radius = this.height / 2
             ctx.beginPath()
             ctx.moveTo(centerX, centerY)
-            ctx.fillStyle = this.colors[this.getPieColor(this.animateSize / 360)]
+            ctx.fillStyle = this.colors[this.getPieColorIndex(this.animateSize / 360)]
             this.drawArc(centerX, centerY, radius, this.start, this.end)
             ctx.closePath()
             ctx.fill()
@@ -213,7 +213,7 @@ export default {
             let total = 0
             return data.map(item => (total += item))
         },
-        getPieColor (ratio) {
+        getPieColorIndex (ratio) {
             return ratio > this.ratios[this.animateIndex] ? Math.min((this.animateIndex += 1), this.ratios.length - 1) : this.animateIndex
         },
         getAngle (angle) {
