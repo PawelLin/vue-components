@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <p class="title">button</p>
+        <router-view></router-view>
+        <!-- <p class="title">button</p>
         <div class="contain">
             <pw-button />
         </div>
@@ -24,11 +25,13 @@
         <p class="title">clock</p>
         <div class="contain clock">
             <pw-clock />
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
+
+import { solarToLunar } from '@/lib/lunar.js'
 
 export default {
     name: 'App',
@@ -47,6 +50,10 @@ export default {
             startPosition: 0
         }
     },
+    created () {
+        console.log(solarToLunar)
+        console.log(solarToLunar(1901, 1, 1))
+    },
     methods: {
         showPreview (index) {
             this.startPosition = index
@@ -62,8 +69,17 @@ export default {
     padding: 0;
     box-sizing: border-box;
 }
+html, body, #app {
+    height: 100%;
+}
 body {
     background-color: #f7f8fa;
+}
+ul, li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
 }
 </style>
 <style lang="scss" scoped>
@@ -86,5 +102,11 @@ body {
         margin: auto;
         width: 70%;
     }
+}
+.example {
+    @include mini-border(bottom);
+}
+.example1 {
+    border-bottom: 1px solid #00b1ff;
 }
 </style>

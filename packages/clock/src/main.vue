@@ -1,7 +1,6 @@
 <template>
     <div ref="canvasDiv">
         <canvas ref="canvas"></canvas>
-        <button @click="reDraw">重画</button>
     </div>
 </template>
 
@@ -180,6 +179,7 @@ export default {
             const centerY = this.centerY
             ctx.save()
             ctx.fillStyle = this.color
+            this.drawShadow()
             ctx.beginPath()
             ctx.arc(centerX, centerY, this.width * 0.016, 0, 2 * Math.PI)
             ctx.fill()
@@ -228,7 +228,7 @@ export default {
             ctx.save()
             ctx.translate(centerX, centerY)
             ctx.strokeStyle = this.color
-            this.drawShadow()
+            // this.drawShadow()
             for (let i = 0; i < 360; i += 6) {
                 if (i && i % 5 !== 0) {
                     ctx.save()
@@ -260,7 +260,7 @@ export default {
             ctx.save()
             ctx.strokeStyle = this.color
             ctx.lineWidth = 1
-            this.drawShadow()
+            // this.drawShadow()
             points.forEach(({ x, y }, index) => {
                 index += 1
                 const initAngle = index * 30

@@ -3,13 +3,25 @@ import Input from './input'
 import ImagePreview from './image-preview'
 import PieChart from './pie-chart'
 import Clock from './clock'
+import Icon from './icon'
+import ScrollTable from './scroll-table'
+import Steps from './steps'
+import CircularProgress from './circular-progress'
+import SlideNumber from './slide-number'
+import CalcNumber from './calc-number'
 
 const components = [
     Button,
     Input,
     ImagePreview,
     PieChart,
-    Clock
+    Clock,
+    Icon,
+    ScrollTable,
+    Steps,
+    CircularProgress,
+    SlideNumber,
+    CalcNumber
 ]
 
 const install = function (Vue) {
@@ -27,5 +39,11 @@ export default {
     Input,
     ImagePreview,
     PieChart,
-    Clock
+    Clock,
+    Icon,
+    ScrollTable,
+    Steps,
+    CircularProgress,
+    SlideNumber,
+    CalcNumber
 }

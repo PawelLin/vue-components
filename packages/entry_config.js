@@ -14,6 +14,21 @@ module.exports = {
         },
         {
             name: 'clock'
+        },
+        {
+            name: 'scroll-table'
+        },
+        {
+            name: 'calc-number'
+        },
+        {
+            name: 'circular-progress'
+        },
+        {
+            name: 'slide-number'
+        },
+        {
+            name: 'steps'
         }
     ]
 }

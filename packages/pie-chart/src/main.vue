@@ -1,7 +1,6 @@
 <template>
     <div ref="canvasDiv">
         <canvas ref="canvas" @click="showActive"></canvas>
-        <button @click="reDraw">重画</button>
     </div>
 </template>
 
@@ -10,6 +9,7 @@ import '../../themes/pieChart.scss'
 
 export default {
     name: 'PwPieChart',
+    inheritAttrs: false,
     props: {
         // 各圆环占比列表
         datas: {
