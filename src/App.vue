@@ -31,7 +31,8 @@
 
 <script>
 
-import { solarToLunar } from '@/lib/lunar.js'
+import lunar from '@/lib/lunar.js'
+import solarLunar from '@/lib/solarLunar.js'
 
 export default {
     name: 'App',
@@ -51,8 +52,19 @@ export default {
         }
     },
     created () {
-        console.log(solarToLunar)
-        console.log(solarToLunar(1901, 1, 1))
+        const date = new Date('2020/01/01')
+        const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+        console.log(date.toLocaleString())
+        console.log(lunar.solarToLunar(year, month, day))
+        console.log(solarLunar.solar2lunar(year, month, day))
+        for (let i = 1; i < 365 * 5; i++) {
+            date.setDate(date.getDate() + 1)
+            const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+            const result = solarLunar.solar2lunar(year, month, day)
+            if (result.isTerm) {
+                console.log(year, month, day, result.term)
+            }
+        }
     },
     methods: {
         showPreview (index) {
